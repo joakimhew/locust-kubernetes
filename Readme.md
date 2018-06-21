@@ -8,9 +8,15 @@ The repository contains everything needed to run a distributed load testing envi
 1. [Project structure](#project-structure)
 2. [Prerequisites](#prerequisites)
 3. [Running](#running)
+    1. [tl;dr](#tldr)
+    2. [Detailed installation](#detailed-installation)
+        1. [Preparing the local kubernetes cluster](#preparing-the-local-kubernetes-cluster)
+        2. [Building the docker image](#building-the-docker-image)
+        3. [Installing the helm charts](#installing-the-helm-charts)
+        4. [Confirm the installation and access locust dashboard](#confirm-the-installation-and-access-locust-dashboard)
 4. [Architecture](#architecture)
 
-### Project structure
+## Project structure
 
     .
     ├── .vscode                                 # launch.json and tasks.json needed to debug the tasks.py in vsc
@@ -31,7 +37,7 @@ The repository contains everything needed to run a distributed load testing envi
     └── ...
 ___
 
-### Prerequisites
+## Prerequisites
 
 | Product            |              Version         |                           Link                          | 
 | :------------------|:-----------------------------|:--------------------------------------------------------|
@@ -42,9 +48,9 @@ ___
 | helm               | 2.9.1                        | [Windows][helm-Windows] [MacOS][helm-macOS]             |
 
 
-### Running
+## Running
 
-#### tl;dr
+### tl;dr
 
 Start minikube
 ```sh
@@ -76,6 +82,10 @@ List services to find locust URL
 minikube service list
 ```
 
+======================
+
+
+### Detailed installation
 #### Preparing the local kubernetes cluster
 Start a local kubernetes cluster with minikube by running the following command `minikube start`
 
