@@ -1,0 +1,12 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+install:
+  - docker build docker-image -t locust-tasks:latest
+
+script:
+  - docker images
