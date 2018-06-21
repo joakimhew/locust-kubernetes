@@ -39,7 +39,3 @@ spec:
               containerPort: 5557
             - name: loc-master-p2
               containerPort: 5558
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN

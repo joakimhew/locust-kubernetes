@@ -34,10 +34,6 @@ spec:
               value: {{ template "fullname" . }}-master
             - name: TARGET_HOST
               value: "{{ .Values.targetHost }}"
-          securityContext:
-            capabilities:
-              add:
-                - NET_ADMIN
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
