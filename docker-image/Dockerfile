@@ -1,7 +1,6 @@
 FROM python:2.7
 
 ADD locust-tasks /locust-tasks
-ADD certs /certs
 ADD run.sh .
 
 # Install the required dependencies via pip
