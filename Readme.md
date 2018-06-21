@@ -82,7 +82,7 @@ List services to find locust URL
 minikube service list
 ```
 
-======================
+---
 
 
 ### Detailed installation
