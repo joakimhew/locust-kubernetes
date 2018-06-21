@@ -1,3 +1,5 @@
+![build-status][build-status]
+
 Distributed load testing using kubernetes and locust
 ======================
 
@@ -128,3 +130,5 @@ To confirm that locust is running in our cluster. Run `minikube service list`. Y
 [helm-macOS]: https://docs.helm.sh/using_helm/#from-homebrew-macos
 
 [locust]: images/locust.png
+
+[build-status]: https://travis-ci.org/joakimhew/locust-kubernetes.svg?branch=master
