@@ -1,0 +1,50 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-locust-slave
+  labels:
+    app: {{ template "fullname" . }}
+    component: locust-slave
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.slave.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+      release: {{ .Release.Name }}
+      component: locust-slave
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+        component: locust-slave
+        name: {{ template "fullname" . }}-locust-slave
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.slave.image.repository }}:{{ .Values.slave.image.tag }}"
+          imagePullPolicy: {{ .Values.slave.image.pullPolicy }}
+          env:
+            - name: LOCUST_MODE
+              value: worker
+            - name: LOCUST_MASTER
+              value: {{ template "fullname" . }}-master
+            - name: TARGET_HOST
+              value: "{{ .Values.targetHost }}"
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: component
+                    operator: In
+                    values:
+                      - locust-master
+              topologyKey: "kubernetes.io/hostname"

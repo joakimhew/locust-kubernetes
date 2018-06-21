@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-master
+  labels:
+    app: {{ template "fullname" . }}
+    component: locust-master
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+    - port: 8089
+      targetPort: loc-master-web
+      name: loc-master-web
+    - port: 5557
+      targetPort: loc-master-p1
+      name: loc-master-p1
+    - port: 5558
+      targetPort: loc-master-p2
+      name: loc-master-p2
+  selector:
+    app: {{ template "name" . }}
+    release: {{ .Release.Name }}
+    component: locust-master
+  type: NodePort

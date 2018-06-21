@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-locust-master
+  labels:
+    app: {{ template "fullname" . }}
+    component: locust-master
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.master.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+      release: {{ .Release.Name }}
+      component: locust-master
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        release: {{ .Release.Name }}
+        component: locust-master
+        name: {{ template "fullname" . }}-locust-master
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.master.image.repository }}:{{ .Values.master.image.tag }}"
+          imagePullPolicy: {{ .Values.master.image.pullPolicy }}
+          env:
+            - name: LOCUST_MODE
+              value: master
+            - name: TARGET_HOST
+              value: "{{ .Values.targetHost }}"
+          ports:
+            - name: loc-master-web
+              containerPort: 8089
+            - name: loc-master-p1
+              containerPort: 5557
+            - name: loc-master-p2
+              containerPort: 5558
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN

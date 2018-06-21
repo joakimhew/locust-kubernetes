@@ -1,0 +1,20 @@
+# Default values for loadtest-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+master:
+  replicaCount: 1
+  image:
+    repository: locust-tasks
+    tag: latest
+    pullPolicy: IfNotPresent
+
+slave:
+  replicaCount: 2
+  image:
+    repository: locust-tasks
+    tag: latest
+    pullPolicy: IfNotPresent
+
+targetHost: http://www.google.com
