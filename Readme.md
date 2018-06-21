@@ -46,26 +46,32 @@ ___
 
 #### tl;dr
 
+Start minikube
 ```sh
 minikube start
 ```
 
+Set docker environment to minikube
 ```sh
-eval $(minikube docker-env
+eval $(minikube docker-env)
 ```
 
+Initialize helm
 ```sh
 helm init
 ```
 
+Build docker image
 ```sh
 docker build docker-image -t locust-tasks:latest
 ```
 
+Install helm charts onto kubernetes cluster
 ```sh
 helm install loadtest-chart --name locust
 ```
 
+List services to find locust URL
 ```sh
 minikube service list
 ```
