@@ -44,6 +44,32 @@ ___
 
 ### Running
 
+#### tl;dr
+
+```sh
+minikube start
+```
+
+```sh
+eval $(minikube docker-env
+```
+
+```sh
+helm init
+```
+
+```sh
+docker build docker-image -t locust-tasks:latest
+```
+
+```sh
+helm install loadtest-chart --name locust
+```
+
+```sh
+minikube service list
+```
+
 #### Preparing the local kubernetes cluster
 Start a local kubernetes cluster with minikube by running the following command `minikube start`
 
