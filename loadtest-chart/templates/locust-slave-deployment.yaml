@@ -34,13 +34,3 @@ spec:
               value: {{ template "fullname" . }}-master
             - name: TARGET_HOST
               value: "{{ .Values.targetHost }}"
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: component
-                    operator: In
-                    values:
-                      - locust-master
-              topologyKey: "kubernetes.io/hostname"
