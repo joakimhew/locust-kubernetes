@@ -64,11 +64,6 @@ Set docker environment to minikube
 eval $(minikube docker-env)
 ```
 
-Initialize helm
-```sh
-helm init
-```
-
 Build docker image
 ```sh
 docker build docker-image -t locust-tasks:latest
@@ -102,8 +97,6 @@ kubectl: Correctly Configured: pointing to minikube-vm at 192.168.99.100
 Now that we have minikube running we are going to want to point our docker environment to the one running on the cluster. Do this with the command `eval $(minikube docker-env)`. You can unset the environment at any time by running `eval $(docker-machine env --unset)`.
 
 Confirm that the docker environment is correct by running `docker images`. You should see a list of related kubernetes images like k8s.gcr.io.
-
-Now we're ready to install tiller onto our local kubernetes cluster. Tiller will make sure that we can use helm to install, update and delete our charts. The easiest way to do this is to simply run `helm init`.
 
 #### Building the docker image
 In the root of the repo, run `docker build docker-image -t locust-tasks:latest`
