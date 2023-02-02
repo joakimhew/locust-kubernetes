@@ -25,5 +25,5 @@ requests==2.21.0
 singledispatch==3.4.0.3
 six==1.11.0
 urllib3==1.26.5
-Werkzeug==0.15.3
+Werkzeug==0.15.5
 wrapt==1.10.11
